@@ -1,7 +1,8 @@
 import EventHandlerInterface from "../../../@shared/event/event-handler.interface";
 import eventInterface from "../../../@shared/event/event.interface";
+import CustomerChangedAddressEvent from "../customer-changed-address-event";
 
-export default class LoggingWhenCustomerAddressChangedHandler implements EventHandlerInterface
+export default class LoggingWhenCustomerAddressChangedHandler implements EventHandlerInterface<CustomerChangedAddressEvent>
 {
   handle(event: eventInterface): void {
       throw new Error("Method not implemented.");
