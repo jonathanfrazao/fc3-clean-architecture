@@ -38,9 +38,9 @@ describe('Customer handler tests', () => {
       )
     })
   
-    test('should run log when address changed', () => {
+    it('should run log when address changed', () => {
       const customer = new Customer('1', 'Customer 1')
-      const address = new Address('Street 1', 123, '13350-250', 'São Paulo')
+      const address = new Address('Street 1', 123, '12345-678', 'São Paulo')
       customer.changeAddress(address)
       const customerCreatedEvent = new CustomerCreatedEvent({
         id: customer.id,
