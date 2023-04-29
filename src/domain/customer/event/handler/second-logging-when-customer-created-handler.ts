@@ -5,11 +5,11 @@ import CustomerCreatedEvent from "../customer-created-event";
 
 export default class SecondLoggingWhenCustomerCreatedHandler implements EventHandlerInterface<CustomerCreatedEvent>
 {
-    handle(event: eventInterface): void {
+    handle(event: CustomerCreatedEvent): void {
         throw new Error("Method not implemented.");
     }
     
-    handler(event: eventInterface): void {
+    handler(event: CustomerCreatedEvent): void {
         console.log('Esse é o segundo console.log do evento: CustomerCreated');
     }
 }

@@ -4,11 +4,11 @@ import CustomerChangedAddressEvent from "../customer-changed-address-event";
 
 export default class LoggingWhenCustomerAddressChangedHandler implements EventHandlerInterface<CustomerChangedAddressEvent>
 {
-  handle(event: eventInterface): void {
+  handle(event: CustomerChangedAddressEvent): void {
       throw new Error("Method not implemented.");
   }
   
-  handler(event: eventInterface): void {
+  handler(event: CustomerChangedAddressEvent): void {
     console.log(
       `Endereço do cliente: ${event.eventData.id}, ${event.eventData.name} alterado para: ${event.eventData.address}`
     )
