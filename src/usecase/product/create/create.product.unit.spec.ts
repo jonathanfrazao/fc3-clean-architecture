@@ -35,22 +35,24 @@ describe("Unit test create product use case", () => {
 
         it("should throw an error when price is less than 0", async () => {
             
-            input.price = -1;
+            var modifiedInput = {...input};
+            modifiedInput.price = -1;
 
             const productRepository = MockRepository();
             const usecase = new CreateProductUseCase(productRepository);
 
-            await expect(usecase.execute(input)).rejects.toThrow("Price must be greater than zero");
+            await expect(usecase.execute(modifiedInput)).rejects.toThrow("Price must be greater than zero");
         });
 
         it("should thrown an error when name is missing", async () => {
             
-            input.name = "";
+            var modifiedInput = {...input};
+            modifiedInput.name = "";
 
             const productRepository = MockRepository();
             const usecase = new CreateProductUseCase(productRepository);
 
-            await expect(usecase.execute(input)).rejects.toThrow("Name is required");
+            await expect(usecase.execute(modifiedInput)).rejects.toThrow("Name is required");
         });
     });
 
@@ -78,22 +80,24 @@ describe("Unit test create product use case", () => {
 
         it("should throw an error when price is less than 0", async () => {
             
-            input.price = -1;
+            var modifiedInput = {...input};
+            modifiedInput.price = -1;
 
             const productRepository = MockRepository();
             const usecase = new CreateProductUseCase(productRepository);
     
-            await expect(usecase.execute(input)).rejects.toThrow("Price must be greater than zero");
+            await expect(usecase.execute(modifiedInput)).rejects.toThrow("Price must be greater than zero");
         });
 
         it("should thrown an error when name is missing", async () => {
             
-            input.name = "";
+            var modifiedInput = {...input};
+            modifiedInput.name = "";
     
             const productRepository = MockRepository();
             const usecase = new CreateProductUseCase(productRepository);
     
-            await expect(usecase.execute(input)).rejects.toThrow("Name is required");
+            await expect(usecase.execute(modifiedInput)).rejects.toThrow("Name is required");
         });
     });
 });

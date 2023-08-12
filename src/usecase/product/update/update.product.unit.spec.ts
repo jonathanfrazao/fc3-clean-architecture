@@ -4,7 +4,6 @@ import ProductFactory from "../../../domain/product/factory/product.factory";
 import UpdateProductUseCase from "./update.product.usecase";
 
 
-
 describe("Unit test for product use case", () => {
 
     describe("Product type a", () => {
@@ -18,7 +17,7 @@ describe("Unit test for product use case", () => {
 
         const MockRepository = () => {
             return {
-                find: jest.fn().mockReturnValue(Promise.resolve(<Product>product)),
+                find: jest.fn().mockReturnValue(Promise.resolve(product)),
                 findAll: jest.fn(),
                 create: jest.fn(),
                 update: jest.fn(),
@@ -34,23 +33,36 @@ describe("Unit test for product use case", () => {
             expect(output).toEqual(input);
         })
 
-        it("should throw an error when price is less than 0", async () => {
-            const productRepository = MockRepository();
-            const usecase = new UpdateProductUseCase(productRepository);
-
-            input.price = -1;
-
-            await expect(usecase.execute(input)).rejects.toThrow("Price must be greater than zero");
-        })
-
         it("should thrown an error when name is missing", async () => {
             const productRepository = MockRepository();
             const usecase = new UpdateProductUseCase(productRepository);
-    
-            input.name = "";
 
-            await expect(usecase.execute(input)).rejects.toThrow("Name is required");
+            var modifiedInput = {...input};
+            modifiedInput.name = "";
+
+            await expect(usecase.execute(modifiedInput)).rejects.toThrow("product: Name is required");
         });
+
+        it("should throw an error when price is less than 0", async () => {
+            var product = ProductFactory.create("a", "Produto 1", 10.0);
+
+            const MockRepository = () => {
+                return {
+                    find: jest.fn().mockReturnValue(Promise.resolve(product)),
+                    findAll: jest.fn(),
+                    create: jest.fn(),
+                    update: jest.fn(),
+                }
+            };
+
+            const productRepository = MockRepository();
+            const usecase = new UpdateProductUseCase(productRepository);
+
+            var modifiedInput = {...input};
+            modifiedInput.price = -1;
+
+            await expect(usecase.execute(modifiedInput)).rejects.toThrow("Price must be greater than zero");
+        })
     })
 
     describe("Product type b", () => {
@@ -65,7 +77,7 @@ describe("Unit test for product use case", () => {
 
         const MockRepository = () => {
             return {
-                find: jest.fn().mockReturnValue(Promise.resolve(<ProductB>product)),
+                find: jest.fn().mockReturnValue(Promise.resolve(product)),
                 findAll: jest.fn(),
                 create: jest.fn(),
                 update: jest.fn(),
@@ -83,22 +95,34 @@ describe("Unit test for product use case", () => {
             expect(output).toEqual(input);
         })
 
-        it("should throw an error when price is less than 0", async () => {
-            const productRepository = MockRepository();
-            const usecase = new UpdateProductUseCase(productRepository);
-
-            input.price = -1;
-
-            await expect(usecase.execute(input)).rejects.toThrow("Price must be greater than zero");
-        })
-
         it("should thrown an error when name is missing", async () => {
             const productRepository = MockRepository();
             const usecase = new UpdateProductUseCase(productRepository);
     
-            input.name = "";
+            var modifiedInput = {...input};
+            modifiedInput.name = "";
 
-            await expect(usecase.execute(input)).rejects.toThrow("Name is required");
+            await expect(usecase.execute(modifiedInput)).rejects.toThrow("product: Name is required");
         });
+
+        it("should throw an error when price is less than 0", async () => {
+            const product = ProductFactory.create("b", "Produto 1", 10.0);
+            const MockRepository = () => {
+                return {
+                    find: jest.fn().mockReturnValue(Promise.resolve(product)),
+                    findAll: jest.fn(),
+                    create: jest.fn(),
+                    update: jest.fn(),
+                }
+            };
+
+            const productRepository = MockRepository();
+            const usecase = new UpdateProductUseCase(productRepository);
+
+            var modifiedInput = {...input};
+            modifiedInput.price = -1;
+
+            await expect(usecase.execute(modifiedInput)).rejects.toThrow("Price must be greater than zero");
+        })
     })
 })

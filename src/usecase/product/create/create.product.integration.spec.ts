@@ -47,18 +47,20 @@ describe("Test create product use case", () => {
             const productRepository = new ProductRepository();
             const usecase = new CreateProductUseCase(productRepository);
     
-            input.price = -1;
+            var modifiedInput = {...input}
+            modifiedInput.price = -1;
     
-            await expect(usecase.execute(input)).rejects.toThrow("Price must be greater than zero");
+            await expect(usecase.execute(modifiedInput)).rejects.toThrow("Price must be greater than zero");
         });
 
         it("should thrown an error when name is missing", async () => {
             const productRepository = new ProductRepository();
             const usecase = new CreateProductUseCase(productRepository);
     
-            input.name = ""
+            var modifiedInput = {...input}
+            modifiedInput.name = ""
     
-            await expect(usecase.execute(input)).rejects.toThrow("Name is required");
+            await expect(usecase.execute(modifiedInput)).rejects.toThrow("Name is required");
         });
     });
 
@@ -85,18 +87,20 @@ describe("Test create product use case", () => {
             const productRepository = new ProductRepository();
             const usecase = new CreateProductUseCase(productRepository);
     
-            input.price = -1;
+            var modifiedInput = {...input}
+            modifiedInput.price = -1;
     
-            await expect(usecase.execute(input)).rejects.toThrow("Price must be greater than zero");
+            await expect(usecase.execute(modifiedInput)).rejects.toThrow("Price must be greater than zero");
         });
 
         it("should thrown an error when name is missing", async () => {
             const productRepository = new ProductRepository();
             const usecase = new CreateProductUseCase(productRepository);
     
-            input.name = "";
+            var modifiedInput = {...input}
+            modifiedInput.name = ""
     
-            await expect(usecase.execute(input)).rejects.toThrow("Name is required");
+            await expect(usecase.execute(modifiedInput)).rejects.toThrow("Name is required");
         });
     });
 });

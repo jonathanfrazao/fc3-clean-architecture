@@ -61,7 +61,7 @@ describe("Test Update product use case", () => {
     
             input.name = ""
     
-            await expect(usecase.execute(input)).rejects.toThrow("Name is required");
+            await expect(usecase.execute(input)).rejects.toThrow("product: Name is required");
         });
     });
 
@@ -102,7 +102,7 @@ describe("Test Update product use case", () => {
     
             input.name = ""
     
-            await expect(usecase.execute(input)).rejects.toThrow("Name is required");
+            await expect(usecase.execute(input)).rejects.toThrow("product: Name is required");
         });
     });
 });
